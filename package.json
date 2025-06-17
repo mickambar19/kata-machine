@@ -19,8 +19,5 @@
         "prettier": "prettier --write ./src",
         "generate": "node ./scripts/generate.js",
         "day": "echo src/day4"
-    },
-    "devDependencies": {
-        "@swc-node/register": "^1.6.7"
     }
 }
