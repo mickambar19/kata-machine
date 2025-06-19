@@ -21,7 +21,28 @@ export default class SinglyLinkedList<T> {
         this.head = newNode;
     }
 
-    insertAt(item: T, idx: number): void {}
+    insertAt(item: T, idx: number): void {
+        if (idx < 0 || idx > this.length) {
+            console.log(
+                "Out of bounds, cannot insert before 0 or after length",
+            );
+        }
+        const newNode: Node<T> = { value: item };
+        this.length++;
+        if (idx === 0) {
+            newNode.next = this.head;
+            this.head = newNode;
+            return;
+        }
+        let i = 0;
+        let curr = this.head;
+        while (i < idx - 1) {
+            curr = curr?.next;
+            i++;
+        }
+        newNode.next = curr?.next;
+        if (curr) curr.next = newNode;
+    }
 
     append(item: T): void {
         const newNode: Node<T> = { value: item };
@@ -65,7 +86,7 @@ export default class SinglyLinkedList<T> {
     get(idx: number): T | undefined {
         if (idx > this.length - 1) {
             console.log("Out of index");
-            return undefined;
+            return;
         }
         let curr = this.head;
         let i = 0;
@@ -79,7 +100,7 @@ export default class SinglyLinkedList<T> {
     removeAt(idx: number): T | undefined {
         if (idx > this.length - 1) {
             console.log("Out of index");
-            return undefined;
+            return;
         }
 
         this.length--;
